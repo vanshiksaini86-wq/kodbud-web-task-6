@@ -1,0 +1,129 @@
+/* Core Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Area */
+.gallery-header {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.gallery-header h1 {
+  font-size: 32px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.gallery-header p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+/* The Responsive Grid Container */
+.gallery-container {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+  
+  /* Desktop Layout: CSS Grid manages structural changes automatically */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Gallery Items Styling & Positioning context */
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  aspect-ratio: 4 / 3; /* Forces a uniform card dimension shape */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps images from stretching or distorting */
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Interactive Hover Action: Zoom in on Image */
+.gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Slide-Up Overlay Element */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0));
+  padding: 24px 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.overlay span {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+}
+
+/* Footer layout */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #0f172a;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Responsiveness Breakpoints (Collapsing Rows)
+   ========================================================================== */
+
+/* Tablet Viewports: Transitions gracefully from 3 columns to 2 columns */
+@media (max-width: 900px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+/* Mobile Viewports: Force collapse into 1 complete layout column */
+@media (max-width: 600px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+    margin: 20px auto;
+  }
+  
+  .gallery-header h1 {
+    font-size: 26px;
+  }
+}
